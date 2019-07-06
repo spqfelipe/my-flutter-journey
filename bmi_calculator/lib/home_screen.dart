@@ -9,8 +9,49 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  // ############################
+  // ##### CLASS ATTRIBUTES #####
+  // ############################
+
+  // ! Controllers
+  // Controllers are responsible to control text input 
+  TextEditingController weightController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+
+  String _infoLabel = "";
+
+  // ###########################
+  // ##### LOGIC FUNCTIONS #####
+  // ###########################
+
+  void _resetFields(){
+    // ! Controllers dont need to setState
+    weightController.text = "";
+    heightController.text = "";
+    setState(() {
+      _infoLabel = "";
+    });
+  }
+
+  // ! SetState
+  void _calculate(){ 
+    setState(() {
+      double weight = double.parse(weightController.text);
+      double height = double.parse(heightController.text)/100;
+      double bmi = weight / (height * height);
+      _infoLabel = "${bmi.toStringAsPrecision(4)}";
+      
+    });
+    
+  }
+
+  // #####################################
+  // ##### WIDGET BUILDING FUNCTIONS #####
+  // #####################################
+
   // Builds TextField with different label
-  Widget _buildTextField(String label) => TextField(
+  Widget _buildTextField(String label, TextEditingController controller) => TextField(
+      controller: controller,
       keyboardType: TextInputType.number,
       style: TextStyle(fontSize: 20.0,),
       decoration: InputDecoration(
@@ -18,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
+  // Builds RaisedButton with padding 
   Widget _buildProcessButton() => Padding(
     padding: EdgeInsets.symmetric(vertical: 15.0),
     child: Container(
@@ -27,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Text("Process",
           style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold), 
         ),
-        onPressed: () {},
+        onPressed: _calculate,
       ),
     ),
   );
@@ -41,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.refresh),
-            onPressed: () {print("okokok");},
+            onPressed: _resetFields,
           )
         ],
       ),
@@ -57,9 +99,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Text("Fill in your info: ", 
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
-              _buildTextField("Weight (Kg)"),
-              _buildTextField("Height (cm)"),
+              _buildTextField("Weight (Kg)", weightController),
+              _buildTextField("Height (cm)", heightController),
               _buildProcessButton(),
+              Text("Results: " + _infoLabel,
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold), 
+              )
             ],
           )
         ),
