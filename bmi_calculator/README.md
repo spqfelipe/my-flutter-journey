@@ -1,16 +1,16 @@
-# bmi_calculator
+# BMI Calculator
 
-A new Flutter project.
+### A true classic… What a better way to learn a new language/framework other than this simple example? For my first experience it was nice to the Widgets basics as well as Input Handling.
 
-## Getting Started
+----
 
-This project is a starting point for a Flutter application.
+## **What I’ve learned?**
 
-A few resources to get you started if this is your first Flutter project:
+###  **Widget System:** the whole Widget System is really intuitive. It was pretty easy to get going with the interface. The ability to make small functions to small parts of the code, like a button, card and etc. Really helps to keep things organized.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### **SetState:** the setState method is used to refresh some Widgets and display new things on the screen. There should be a better way to manage the state of widgets, but for now, I liked how the setState method works. 
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+### **Text Controllers:**  using controllers to get data from the text fields was easier that I initially thought. Note that controllers don't need to be refreshed using setState.
+
+## **Biggest Challenges**
+### As for challenges, I have to say that this was pretty easy. Of course, a BMI Calculator is the simplest example I could think of. No doubt that future projects will bring harder challenges. 

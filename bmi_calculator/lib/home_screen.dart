@@ -18,10 +18,14 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController weightController = TextEditingController();
   TextEditingController heightController = TextEditingController();
 
+  // Label to display result 
   String _infoLabel = "";
 
+  // Form key to validade inputs 
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   // ###########################
-  // ##### LOGIC FUNCTIONS #####
+  // ##### LOGIC METHODS #####
   // ###########################
 
   void _resetFields(){
@@ -46,12 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // #####################################
-  // ##### WIDGET BUILDING FUNCTIONS #####
+  // ##### WIDGET BUILDING METHODS #####
   // #####################################
 
   // Builds TextField with different label
-  Widget _buildTextField(String label, TextEditingController controller) => TextField(
+  Widget _buildTextFormField(String label, TextEditingController controller) => TextFormField(
       controller: controller,
+      validator: (value) {if(value.isEmpty) return "Fill in the field";},
       keyboardType: TextInputType.number,
       style: TextStyle(fontSize: 20.0,),
       decoration: InputDecoration(
@@ -69,10 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Text("Process",
           style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold), 
         ),
-        onPressed: _calculate,
+        onPressed: (){
+          if(_formKey.currentState.validate()) _calculate();
+        }),
       ),
-    ),
-  );
+    );
 
   @override
   Widget build(BuildContext context) {
@@ -90,22 +96,23 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-            child: Column(
-            //
-            // Stretch will extend all widgets inside
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Icon(Icons.person, size: 120.0,),
-              Text("Fill in your info: ", 
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              ),
-              _buildTextField("Weight (Kg)", weightController),
-              _buildTextField("Height (cm)", heightController),
-              _buildProcessButton(),
-              Text("Results: " + _infoLabel,
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold), 
-              )
-            ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Icon(Icons.person, size: 120.0,),
+                Text("Fill in your info: ", 
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                _buildTextFormField("Weight (Kg)", weightController),
+                _buildTextFormField("Height (cm)", heightController),
+                _buildProcessButton(),
+                Text("Results: " + _infoLabel,
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold), 
+                )
+              ],
+            ),
           )
         ),
       ),
