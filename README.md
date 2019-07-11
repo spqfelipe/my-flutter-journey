@@ -1,7 +1,7 @@
 # My Flutter Journey
 
 
-### This repository main purpose is to document my journey on learning Flutter. Here you will find a series of mini projects. On each of them I will try to progressively tackle on harder challenges.
+This repository main purpose is to document my journey on learning Flutter. Here you will find a series of mini projects. On each of them I will try to progressively tackle on harder challenges.
 
 ## **A little bit of context**
 
