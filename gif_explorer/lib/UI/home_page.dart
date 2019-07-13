@@ -36,6 +36,15 @@ class _HomePageState extends State<HomePage> {
         crossAxisSpacing: 12.0,
         mainAxisSpacing: 12.0,
       ),
+      itemCount: 4,
+      itemBuilder: (context, index){
+        return GestureDetector(
+          child: Image.network(snapshot.data['data'][index]['images']['fixedHeight']['url'],
+          height: 300.0,
+          fit: BoxFit.cover
+          ),
+        );
+      },
   );
 
   // ! API functions -- Remove later
