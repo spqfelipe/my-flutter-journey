@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "dart:convert";
 import "package:http/http.dart" as http;
@@ -8,32 +9,96 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   String _search;
   String _offset;
 
-  Future<Map>_getGifs() async {
+  // Widgets Functions
+
+  Widget _buildSearchField() => Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: TextField(
+          decoration: InputDecoration(
+              alignLabelWithHint: true,
+              labelText: "Search",
+              labelStyle: TextStyle(color: Colors.white, fontSize: 18.0),
+              border: OutlineInputBorder()),
+          style: TextStyle(color: Colors.white, fontSize: 20.0),
+          textAlign: TextAlign.center,
+        ),
+      );
+
+  Widget _buildGifTabel(BuildContext context, AsyncSnapshot snapshot) => GridView.builder(
+      padding: EdgeInsets.all(12.0),
+      // ! Grid Delegate is responsible to setup how the data will be displayed inside 
+      // ! the grid itself 
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 12.0,
+        mainAxisSpacing: 12.0,
+      ),
+  );
+
+  // ! API functions -- Remove later
+
+  Future<Map> _getGifs() async {
     http.Response response;
 
     if (_search == null)
-      response = await http.get("https://api.giphy.com/v1/gifs/trending?api_key=CkYNcuKD69Vsr3rqJPILiWEsBe9ffoGP&limit=20&rating=G");
+      response = await http.get(
+          "https://api.giphy.com/v1/gifs/trending?api_key=CkYNcuKD69Vsr3rqJPILiWEsBe9ffoGP&limit=20&rating=G");
     else
-      response = await http.get("https://api.giphy.com/v1/gifs/search?api_key=CkYNcuKD69Vsr3rqJPILiWEsBe9ffoGP&q=$_search&limit=25&offset=$_offset&rating=G&lang=en");
+      response = await http.get(
+          "https://api.giphy.com/v1/gifs/search?api_key=CkYNcuKD69Vsr3rqJPILiWEsBe9ffoGP&q=$_search&limit=25&offset=$_offset&rating=G&lang=en");
 
     return json.decode(response.body);
   }
+
   @override
-  void initState() { 
+  void initState() {
     super.initState();
 
-    _getGifs().then(map){
-      print(map);
-    };
+    // _getGifs().then((map) {
+    //   print(map);
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-    );
+    return Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          centerTitle: true,
+          title: Image.asset("assets/images/title.gif"),
+        ),
+        body: Column(
+          children: <Widget>[
+            _buildSearchField(),
+            Expanded(
+              child: FutureBuilder(
+                future: _getGifs(),
+                builder: (context, snapshot){
+                  // Verify the connection state to display propper data
+                  switch(snapshot.connectionState){
+                    case ConnectionState.waiting:
+                    case ConnectionState.done:
+                      return Container(
+                        height: 300.0,
+                        width: 300.0,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          strokeWidth: 4.0,
+                        ),
+                      );
+                    default:
+                      if(snapshot.hasError) return Container();
+                      else return _buildGifTabel(context, snapshot);
+                  }
+                },
+              ),
+            ),
+          ],
+        ));
   }
 }
