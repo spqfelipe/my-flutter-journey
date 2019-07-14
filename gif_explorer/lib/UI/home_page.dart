@@ -32,14 +32,14 @@ class _HomePageState extends State<HomePage> {
       // ! Grid Delegate is responsible to setup how the data will be displayed inside 
       // ! the grid itself 
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         crossAxisSpacing: 12.0,
         mainAxisSpacing: 12.0,
       ),
       itemCount: 4,
       itemBuilder: (context, index){
         return GestureDetector(
-          child: Image.network(snapshot.data['data'][index]['images']['fixedHeight']['url'],
+          child: Image.network(snapshot.data['data'][index]['images']['fixed_height']['url'],
           height: 300.0,
           fit: BoxFit.cover
           ),
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                   // Verify the connection state to display propper data
                   switch(snapshot.connectionState){
                     case ConnectionState.waiting:
-                    case ConnectionState.done:
+                    case ConnectionState.none:
                       return Container(
                         height: 300.0,
                         width: 300.0,
