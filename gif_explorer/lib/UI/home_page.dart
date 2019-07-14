@@ -24,6 +24,12 @@ class _HomePageState extends State<HomePage> {
               border: OutlineInputBorder()),
           style: TextStyle(color: Colors.white, fontSize: 20.0),
           textAlign: TextAlign.center,
+          onSubmitted: (text){
+            // Set state will force FutureBuilder to rebuild
+            setState(() {
+              _search = text;
+            });
+          },
         ),
       );
 
