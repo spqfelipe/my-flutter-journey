@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gif_explorer/Services/gif_service.dart';
+import 'package:gif_explorer/UI/gif_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
             // Set state will force FutureBuilder to rebuild
             setState(() {
               gifService.setSearch(text);
+              gifService.setOffset(0);
             });
           },
         ),
@@ -47,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
-          onTap: (){
+          onTap: () {
             setState(() {
               gifService.incrementOffset(19);
             });
@@ -73,6 +75,11 @@ class _HomePageState extends State<HomePage> {
                   snapshot.data['data'][index]['images']['fixed_height']['url'],
                   height: 300.0,
                   fit: BoxFit.cover),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return GifPage(snapshot.data['data'][index]);
+                }));
+              },
             );
           } else {
             return _buildLoadMoreCell();
