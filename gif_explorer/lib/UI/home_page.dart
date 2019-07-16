@@ -3,16 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:gif_explorer/Services/gif_service.dart';
 import 'package:gif_explorer/UI/gif_page.dart';
 
+// ############################
+// ######## HomePage ##########
+// ############################
+// Main page for the app. Pretty much everything is here
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+  // ############################
+  // ##### CLASS ATTRIBUTES #####
+  // ############################
+
   GifService gifService = GifService();
 
-  // Widgets Functions
+  // #####################################
+  // ###### WIDGET BUILDING METHODS ######
+  // #####################################
 
+  // Build Search Field 
   Widget _buildSearchField() => Padding(
         padding: const EdgeInsets.all(12.0),
         child: TextField(
@@ -33,6 +46,7 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
+  // Build "Load More" cell used for loading more Gifs from search
   Widget _buildLoadMoreCell() => Container(
         child: GestureDetector(
           child: Column(
@@ -57,11 +71,11 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
+  // Builds the grid that contains the Gifs
+  // Note: the Grid Delegate is responsible to setup how the data will be displayed inside the grid itself
   Widget _buildGifTabel(BuildContext context, AsyncSnapshot snapshot) =>
       GridView.builder(
         padding: EdgeInsets.all(12.0),
-        // ! Grid Delegate is responsible to setup how the data will be displayed inside
-        // ! the grid itself
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 12.0,
@@ -87,6 +101,7 @@ class _HomePageState extends State<HomePage> {
         },
       );
 
+  // Builds the body that hold the Future Builder that recieves the api data
   Widget _buildGifBody() => Expanded(
         child: FutureBuilder(
           future: gifService.getGifs(),

@@ -1,11 +1,17 @@
 import "package:flutter/material.dart";
 
+// ############################
+// ######### GifPage ##########
+// ############################
+// Show details foa single gif
+
 class GifPage extends StatelessWidget {
-  
-  // ! Needs to be final as this widget is Statless
+    
+  // Holds the data from a specific gif
+  // Note: has to be final the its stateless
   final Map _gifData;
 
-  // ! Constructor to pass data
+  // Constructor
   GifPage(this._gifData);
 
   @override

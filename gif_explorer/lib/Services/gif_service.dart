@@ -2,17 +2,22 @@ import "dart:convert";
 import "package:http/http.dart" as http;
 
 // ############################
-// >> Gif Service 
+// ######## GifService ########
+// ############################
 // Uses http module to connect to Giphy API
 
 class GifService{
 
+  // ############################
+  // ##### CLASS ATTRIBUTES #####
+  // ############################
+
   String _search;
   int _offset = 0;
 
-  // Constructor 
-
-  // Gets and Sets
+  // ############################
+  // ####### GETs AND SETs ######
+  // ############################
 
   String getSearch() => _search;
 
@@ -28,6 +33,10 @@ class GifService{
   void setOffset(int value) { _offset = value; }
 
   void incrementOffset(int value) {_offset += value;}
+
+  // ###########################
+  // ###### LOGIC METHODS ######
+  // ###########################
 
   Future<Map> getGifs() async {
     http.Response response;
