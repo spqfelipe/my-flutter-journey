@@ -18,3 +18,9 @@ This repository main purpose is to document my journey on learning Flutter. Here
 ### **.BMI Calculator** 
 A true classic… What a better way to learn a new language/framework other than this simple example? For my first experience it was nice to learn the Widgets basics as well as Input handling. **See more**
 
+### **.GIF Explorer**
+A really quick experiment. It was a nice way to start working with async requests and other (a bit more complex) features. **See more**
+
+
+
+

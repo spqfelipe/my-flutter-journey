@@ -14,3 +14,6 @@ A true classic… What a better way to learn a new language/framework other than
 
 ## **Biggest Challenges**
 As for challenges, I have to say that this was pretty easy. Of course, a BMI Calculator is the simplest example I could think of. No doubt that future projects will bring harder challenges. 
+
+## **Screenshots**
+

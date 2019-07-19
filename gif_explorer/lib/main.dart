@@ -7,6 +7,6 @@ import "package:gif_explorer/UI/home_page.dart";
 // Just to start the app 
 
 void main() => runApp(MaterialApp(
-  home: HomePage(),
   theme: ThemeData.dark(),
+  home: HomePage(),
 ));

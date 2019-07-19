@@ -1,16 +1,18 @@
-# gif_explorer
+# GIF Explorer 
 
-A new Flutter project.
+A really quick experiment. It was a nice way to start working with async requests and other (a bit more complex) features. 
 
-## Getting Started
+------
 
-This project is a starting point for a Flutter application.
+## **What I’ve learned?**
 
-A few resources to get you started if this is your first Flutter project:
+**Future & Async:** first time working with async process on a mobile framework. I have to say that it was esier that I thought. The "FutureBuilder" widget made things simple and I got eveerything working in no time. 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+**Grid Layout:** the grid was the main body of the app. I've learned a lot by building it using the "Grid View" widget. The cell were built individually with it's own small function.(?) This helped to get used with a more modular code when it comes to UI. 
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+**Share:** it was very quick an easy to setup a share feature with the "share" plugin. Really usefull.
+
+## **Biggest Challenges**
+Falar da montagem da grade e busca pelos gif especificos. 
+
+## **Screenshots** 
