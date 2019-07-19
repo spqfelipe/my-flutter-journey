@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gif_explorer/Services/gif_service.dart';
 import 'package:gif_explorer/UI/gif_page.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 // ############################
 // ######## HomePage ##########
@@ -14,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   // ############################
   // ##### CLASS ATTRIBUTES #####
   // ############################
@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   // ###### WIDGET BUILDING METHODS ######
   // #####################################
 
-  // Build Search Field 
+  // Build Search Field
   Widget _buildSearchField() => Padding(
         padding: const EdgeInsets.all(12.0),
         child: TextField(
@@ -85,10 +85,16 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           if (!gifService.isSearch() || index < snapshot.data['data'].length) {
             return GestureDetector(
-              child: Image.network(
-                  snapshot.data['data'][index]['images']['fixed_height']['url'],
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: snapshot.data['data'][index]['images']['fixed_height']
+                      ['url'],
                   height: 300.0,
-                  fit: BoxFit.cover),
+                  fit: BoxFit.cover,
+                ),
+              ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return GifPage(snapshot.data['data'][index]);
