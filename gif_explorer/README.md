@@ -16,3 +16,9 @@ A really quick experiment. It was a nice way to start working with async request
 Falar da montagem da grade e busca pelos gif especificos. 
 
 ## **Screenshots** 
+
+- **Screenshot 01** </br>
+<img src="../screenshots/gif_explorer_01.png" width="200"/>
+
+- **Screenshot 02** </br>
+<img src="../screenshots/gif_explorer_02.png" width="200"/>

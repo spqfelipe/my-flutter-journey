@@ -17,3 +17,8 @@ As for challenges, I have to say that this was pretty easy. Of course, a BMI Cal
 
 ## **Screenshots**
 
+- **Screenshot 01** </br>
+<img src="../screenshots/bmi_calculator_01.png" width="200"/>
+
+- **Screenshot 02** </br>
+<img src="../screenshots/bmi_calculator_02.png" width="200"/>
