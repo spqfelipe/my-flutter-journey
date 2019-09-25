@@ -21,6 +21,9 @@ A true classic… What a better way to learn a new language/framework other than
 ### **.GIF Explorer**
 A really quick experiment. It was a nice way to start working with async requests and other (a bit more complex) features. **See more**
 
+### **.Despicable Me**
+Working on it!
+
 
 
 

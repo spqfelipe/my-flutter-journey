@@ -4,7 +4,7 @@ import 'package:share/share.dart';
 // ############################
 // ######### GifPage ##########
 // ############################
-// Show details foa single gif
+// Show details for single gif
 
 class GifPage extends StatelessWidget {
     
